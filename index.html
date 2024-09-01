@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Firebase Image Upload</title>
+</head>
+<body>
+  <h1>Upload and View Images</h1>
+
+  <!-- Image upload form -->
+  <input type="file" id="imageUpload" accept="image/*">
+  <button id="uploadButton">Upload</button>
+
+  <h2>Uploaded Images</h2>
+  <div id="imageGallery"></div>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-storage-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-auth-compat.js"></script>
+
+  <!-- Your JS -->
+  <script src="app.js"></script>
+</body>
+</html>

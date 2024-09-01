@@ -4,15 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Firebase Image Upload</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <h1>Upload and View Images</h1>
 
   <!-- Image upload form -->
-  <input type="file" id="imageUpload" accept="image/*">
-  <button id="uploadButton">Upload</button>
+  <input type="file" id="imageUpload" accept="image/*"><br>
+  <button id="uploadButton">Upload</button><br>
+  <div class="progressText">
+    <b>Progress:</b> <b id="percent">0% done</b>
+  </div>
+  <!-- Progress bar -->
+  <progress id="progressBar" value="0" max="100"></progress>
 
-  <h2>Uploaded Images</h2>
+  <h2>Uploaded Images  (↓) </h2>
   <div id="imageGallery"></div>
 
   <!-- Firebase SDKs -->

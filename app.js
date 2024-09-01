@@ -34,9 +34,22 @@
     uploadTask.on('state_changed', 
       (snapshot) => {
         // Progress tracking (optional)
+              // Get progress percentage
+      const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+      var val=Math.floor(progress);
+      // alert('Upload is ' + progress + '% done');
+      document.getElementById('percent').textContent=val + ' % done';
+      
+      // Display the progress in a progress bar or text
+      const progressBar = document.getElementById('progressBar');
+      if (progressBar) {
+        progressBar.value = progress;  // For a progress bar
+      }
       }, 
       (error) => {
         alert('Error uploading image: ' + error.message);
+        progressBar.value = 0;
+
       }, 
       () => {
         // On successful upload
@@ -48,31 +61,40 @@
             name: file.name,
             timestamp: Date.now()  // Store timestamp as number
           }).then(() => {
-            alert('Image uploaded successfully');
+            // alert('Image uploaded successfully');
             displayImages();  // Refresh the gallery
           }).catch((error) => {
             alert('Error saving image URL to Realtime Database: ' + error.message);
           });
+          progressBar.value = 0;  // For a progress bar
+
         });
       }
     );
   });
   
-  // Function to display images from Realtime Database
-  function displayImages() {
-    imageGallery.innerHTML = '';  // Clear previous images
-    database.ref('images').orderByChild('timestamp').once('value', (snapshot) => {
+function displayImages() {
+  imageGallery.innerHTML = '';  // Clear previous images
+  // Reference to the images node
+  database.ref('images').orderByChild('timestamp').once('value')
+    .then((snapshot) => {
       snapshot.forEach((childSnapshot) => {
         const img = document.createElement('img');
         img.src = childSnapshot.val().url;
         img.alt = childSnapshot.val().name;
-        img.width = 200;  // Set width for images
+        img.width = 250;  // Set width for images
+
+        // Add a class to the image element
+        img.className = 'gallery-image';
+
         imageGallery.appendChild(img);
       });
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log('Error getting images: ', error);
     });
-  }
+}
+
   
   // Initial display of images
   displayImages();

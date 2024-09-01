@@ -1,0 +1,80 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+
+
+/* styles.css */
+progress {
+    width: 99%; /* Adjust width as needed */
+    height: 20px; /* Adjust height as needed */
+    border-radius: 10px; /* Optional: Rounded corners */
+    overflow: hidden; /* Ensures rounded corners are applied */
+    margin: 15px 0px;
+  }
+  
+  progress::-webkit-progress-bar {
+    background-color: #ffffff; /* Background color of the progress bar */
+  }
+  
+  progress::-webkit-progress-value {
+    background-color: #060c58da; /* Color of the progress bar fill */
+  }
+  
+  progress::-moz-progress-bar {
+    background-color: #01eb09; /* Color of the progress bar fill for Firefox */
+  }
+  
+  .progressText, #uploadButton{
+    display: inline-block;
+    padding: 4px 15px;
+    font-family: serif;
+    border-radius: 3px;
+    color: #3514f1;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    box-shadow: 0 0 5px -0.4px black;
+  }
+
+#imageGallery{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-radius: 35px;
+    width: 90%;
+
+    padding: 15px 30px;
+    font-family: serif;
+    color: #3514f1;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    box-shadow: 0 0 5px -0.4px black;
+  }
+.gallery-image{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    box-shadow: 0 0 5px -0.2px black;
+  }
+
+  h1,#uploadButton,#imageUpload,h2{
+    display: inline-block;
+    padding: 4px 15px;
+    font-family: serif;
+    border-radius: 3px;
+    color: #3d0a79;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: 10px;
+    box-shadow: 0 0 5px -0.4px rgba(53, 8, 8, 0.692);
+  }

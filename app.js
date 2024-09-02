@@ -82,7 +82,7 @@ function displayImages() {
         const img = document.createElement('img');
         img.src = childSnapshot.val().url;
         img.alt = childSnapshot.val().name;
-        img.width = 250;  // Set width for images
+        // img.width = 250;  // Set width for images
 
         // Add a class to the image element
         img.className = 'gallery-image';

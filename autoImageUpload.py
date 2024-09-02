@@ -6,14 +6,14 @@ import os
 
 # URL and image folder setup
 url = "https://babla45.github.io/beautiful-images"
-image_folder = "C:/Users/babla/Desktop/Projects/beautiful_images/images"
+image_folder = "C:/Users/babla/Desktop/Projects/beautiful_images/images2"
 
 # Initialize WebDriver
 driver = webdriver.Chrome()  # Ensure your WebDriver is properly configured
 driver.get(url)  # Navigate to the website
 
 # Wait for the page to load
-time.sleep(5)
+time.sleep(1.5)
 
 # Function to upload images
 def upload_image(image_path):
@@ -41,7 +41,7 @@ def upload_image(image_path):
 # Iterate through each image in the folder
 i=1
 for filename in os.listdir(image_folder):
-    if filename.endswith(".jpg") or filename.endswith(".png"):  # Adjust file extensions as needed
+    if filename.endswith(".jpg") or filename.endswith(".png") or filename.endswith(".jpeg"):  # Adjust file extensions as needed
         image_path = os.path.join(image_folder, filename)
         upload_image(image_path)
         print(f"Uploaded: {filename}, total uploaded ({i}) images")

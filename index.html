@@ -7,13 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+
   <marquee direction="left">
     <h1>Welcome to Md Babla Islam's image gallery</h1>
   </marquee>
   <h1>Upload and View Images</h1>
 
   <!-- Image upload form -->
-  <input type="file" id="imageUpload" accept="image/*"><br>
+  <input type="file" id="imageUpload" multiple accept="image/*"><br>
   <button id="uploadButton">Upload</button><br>
   <div class="progressText">
     <b>Progress:</b> <b id="percent">0% done</b>
@@ -21,8 +23,31 @@
   <!-- Progress bar -->
   <progress id="progressBar" value="0" max="100"></progress>
 
+  <input type="text" id="pin" placeholder="Enter pin to delete picture">
+  <button id="toggle">Toggle Delete Buttons</button>
+
   <h2>Uploaded Images  (↓) </h2>
   <div id="imageGallery"></div>
+
+
+<!-- --------------------- -->
+
+
+
+<!-- Modal for image preview -->
+<div id="imageModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
+
+
+<!-- ------------------------ -->
+
+
+
+
+
 
   <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.1.3/firebase-app-compat.js"></script>

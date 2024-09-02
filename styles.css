@@ -5,6 +5,54 @@ body{
   justify-content: space-evenly;
 }
 
+/* ------------------- */
+/* Style for the image preview modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 95%;
+  max-width: 30%;
+  max-height: 81vh;
+  border-radius: 20px;
+}
+
+.close {
+  position: absolute;
+  top: 50px;
+  right: 50%;
+  color: rgb(253, 0, 0);
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.delete-button {
+  margin-top: 8px;
+  border-radius: 5px;
+  display: none;
+  cursor: pointer;
+}
+
+.delete-button.visible {
+  margin-top: 8px;
+  display: block;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* ------------------- */
 
 
 /* styles.css */
@@ -40,6 +88,26 @@ progress {
     box-shadow: 0 0 5px -0.4px black;
   }
   
+  #toggle, #pin{
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    margin-top: 5px;
+    font-weight: bold;
+    background-color: #eeeeee;
+    box-shadow: 0 0 2px -0.9px rgb(0, 0, 0);
+  }
+  #pin{
+    border-radius: 5px;
+    padding: 3px;
+    text-align: center;
+    display: none;
+    margin-bottom: 5px;
+    font-weight: bold;
+    background-color: #eeeeee;
+    box-shadow: 0 0 2px -0.9px rgb(0, 0, 0);
+  }
+  
 #imageGallery{
     display: flex;
     flex-wrap: wrap;
@@ -57,6 +125,7 @@ progress {
     /* position: relative; */
   }
   .gallery-image{
+    cursor: pointer;
     display: flex;
     flex-wrap: wrap;
     align-items:center;

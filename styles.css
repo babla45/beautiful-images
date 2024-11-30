@@ -89,6 +89,13 @@ progress {
     box-shadow: 0 0 5px -0.4px black;
   }
   
+  .upload-file{
+    margin: 15px 0px 0px 0px;
+    padding: 5px 12px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px -0.4px black;
+  }
+  
   #toggle, #pin{
     border-radius: 5px;
     padding: 3px;

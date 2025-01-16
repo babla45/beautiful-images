@@ -21,9 +21,15 @@ const storageRef = ref(storage);
 
 // -------popup message--------
 // calert == custom calert using popup message
-const calert = (message) => {
+const calert = (message, type = 'info') => {
     const popup = document.getElementById('popup-message');
     const overlay = document.getElementById('popup-overlay');
+    
+    // Remove all possible classes first
+    popup.classList.remove('success', 'error', 'info');
+    
+    // Add the appropriate type class
+    popup.classList.add(type);
     
     // Set message and show popup with overlay
     popup.textContent = message;
@@ -41,7 +47,7 @@ const calert = (message) => {
     }, 2000);
 };
 // Replace the alert with this function
-// calert(`Error uploading file: ${error}`);
+// calert(`Error uploading file: ${error}`, 'error');
 // -------popup message end--------
 
 
@@ -56,14 +62,14 @@ function uploadFiles() {
     const progressText = document.getElementById('progress-text');
 
     if (!files.length) {
-        calert('Please select files to upload.');
+        calert('Please select files to upload.', 'info');
         return;
     }
 
     let totalSize = 0;
     for (let file of files) {
         if (file.size > 500 * 1024 * 1024) {
-            calert('File size exceeds the limit of 500MB.');
+            calert('File size exceeds the limit of 500MB.', 'error');
             return;
         }
         totalSize += file.size;
@@ -85,13 +91,13 @@ function uploadFiles() {
                 progressText.innerHTML = `Upload is ${totalProgress.toFixed(2)}% done`;
             },
             (error) => {
-                calert(`Error uploading file: ${error}`);
+                calert(`Error uploading file: ${error}`, 'error');
             },
             () => {
                 totalBytesTransferred += file.size;
 
                 if (totalBytesTransferred === totalSize) {
-                    calert('All files uploaded successfully.');
+                    calert('All files uploaded successfully.', 'success');
                     progressBar.value = 0;
                     progressText.innerHTML = '';
                     displayUploadedFiles();
@@ -141,11 +147,15 @@ function displayUploadedFiles() {
                 tot += fileSizeMB;
 
                 const listItem = document.createElement('li');
+                listItem.className = 'bg-gray-50 p-4 rounded-lg shadow flex justify-between items-center';
                 listItem.innerHTML = `
-                    (${index + 1}) ${file.name} (${fileSizeMB.toFixed(3)} MB) 
-                    <div class="btn">
-                        <button class="delete-btn">Delete</button>
-                        <button class="view-btn">View File</button>
+                    <div class="flex-1">
+                        <span class="text-gray-700">(${index + 1}) ${file.name}</span>
+                        <span class="text-gray-500 text-sm ml-2">(${fileSizeMB.toFixed(3)} MB)</span>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Download</button>
+                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Delete</button>
                     </div>
                 `;
 
@@ -167,15 +177,21 @@ function displayUploadedFiles() {
 // Adjusted Function to delete files from 'tempFile' folder
 function deleteFile(fileName) {
     const modal = document.createElement('div');
-    modal.className = 'modal';
+    modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
 
     modal.innerHTML = `
-        <div class="modal-content">
-            <h3>Enter password to delete the file:</h3>
-            <input type="password" id="password-input" placeholder="Eg. 12345" />
-            <button id="toggle-password">Show</button>
-            <button id="confirm-delete">Confirm</button>
-            <button id="cancel-delete">Cancel</button>
+        <div class="bg-white p-6 rounded-lg shadow-xl max-w-md w-full mx-4">
+            <h3 class="text-xl font-bold mb-4">Enter password to delete the file:</h3>
+            <input type="password" id="password-input" placeholder="Eg. 12345" 
+                   class="w-full p-2 border rounded mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+            <div class="flex space-x-2">
+                <button id="toggle-password" 
+                        class="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 transition duration-200">Show</button>
+                <button id="confirm-delete" 
+                        class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200">Confirm</button>
+                <button id="cancel-delete" 
+                        class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition duration-200">Cancel</button>
+            </div>
         </div>
     `;
 
@@ -200,16 +216,16 @@ function deleteFile(fileName) {
         const userInput = passwordInput.value;
 
         if (encrypt(userInput, 5) !== "#!5") {
-            calert('Incorrect Password. Delete Failed');
+            calert('Incorrect Password. Delete Failed', 'error');
         } else {
             const fileRef = ref(storage, `tempFile/${fileName}`); // Reference in 'tempFile'
             deleteObject(fileRef)
                 .then(() => {
-                    calert('File deleted successfully.');
+                    calert('File deleted successfully.', 'success');
                     displayUploadedFiles();
                 })
                 .catch((error) => {
-                    calert(`Error deleting file: ${error}`);
+                    calert(`Error deleting file: ${error}`, 'error');
                 });
         }
 
@@ -261,7 +277,7 @@ displayUploadedFiles();
 
 
 function welcomeMessage(){
-    calert("Hello !! Welcome to my Website");
+    calert("Hello !! Welcome to my Website", 'info');
 }
 
 welcomeMessage();

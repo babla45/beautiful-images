@@ -154,8 +154,8 @@ function displayUploadedFiles() {
                         <span class="text-gray-500 text-sm ml-2">(${fileSizeMB.toFixed(3)} MB)</span>
                     </div>
                     <div class="flex space-x-2">
-                        <button class="view-btn bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Download</button>
-                        <button class="delete-btn bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Delete</button>
+                        <button class="view-btn  bg-gray-800 text-white px-3 py-1 rounded hover:bg-blue-600 transition duration-200">Download</button>
+                        <button class="delete-btn bg-gray-800 text-white px-3 py-1 rounded hover:bg-red-600 transition duration-200">Delete</button>
                     </div>
                 `;
 
